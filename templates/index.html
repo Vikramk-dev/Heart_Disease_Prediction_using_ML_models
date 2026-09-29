@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CardioPredict | Heart Disease Prediction</title>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="page-wrapper">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ♥
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-title">
+                    CardioPredict
+                </span>
+
+                <span class="logo-subtitle">
+                    ML HEALTH ASSISTANT
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#prediction">
+                Prediction
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO SECTION
+    ====================================================== -->
+
+    <section class="hero"
+             id="home">
+
+
+        <div class="hero-content">
+
+
+            <div class="badge">
+
+                <span class="status-dot"></span>
+
+                Machine Learning Powered
+
+            </div>
+
+
+            <h1>
+
+                Heart Disease
+
+                <span>
+                    Prediction
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Analyze important patient health parameters
+                using a machine learning model to predict
+                the possibility of heart disease.
+
+            </p>
+
+
+            <a href="#prediction"
+               class="hero-button">
+
+                Start Prediction
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- Heart Illustration -->
+
+        <div class="hero-heart">
+
+            <div class="heart-circle">
+
+                <div class="pulse-ring"></div>
+
+                <div class="big-heart">
+                    ♥
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PREDICTION SECTION
+    ====================================================== -->
+
+    <section class="prediction-section"
+             id="prediction">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-label">
+                PATIENT INFORMATION
+            </div>
+
+
+            <h2>
+                Enter Patient Details
+            </h2>
+
+
+            <p>
+                Enter the required patient parameters
+                used by the machine learning model.
+            </p>
+
+
+        </div>
+
+
+
+        <!-- Prediction Card -->
+
+        <div class="prediction-card">
+
+
+            <form action="/predict"
+                  method="POST">
+
+
+                <div class="form-grid">
+
+
+                    <!-- =====================================
+                         AGE
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Age
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◉
+                            </span>
+
+
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                placeholder="Enter patient's age"
+                                min="1"
+                                max="120"
+                                step="1"
+                                required>
+
+                        </div>
+
+
+                        <small>
+                            Patient age in years
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         SEX
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="sex">
+                            Sex
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◉
+                            </span>
+
+
+                            <select
+                                id="sex"
+                                name="sex"
+                                required>
+
+                                <option value=""
+                                        disabled
+                                        selected>
+                                    Select sex
+                                </option>
+
+                                <option value="1">
+                                    Male (1)
+                                </option>
+
+                                <option value="0">
+                                    Female (0)
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <small>
+                            Dataset encoding: 1 = Male, 0 = Female
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         CHEST PAIN TYPE
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="cp">
+                            Chest Pain Type
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◆
+                            </span>
+
+
+                            <select
+                                id="cp"
+                                name="cp"
+                                required>
+
+                                <option value=""
+                                        disabled
+                                        selected>
+                                    Select chest pain type
+                                </option>
+
+                                <option value="0">
+                                    0 — Typical Angina
+                                </option>
+
+                                <option value="1">
+                                    1 — Atypical Angina
+                                </option>
+
+                                <option value="2">
+                                    2 — Non-anginal Pain
+                                </option>
+
+                                <option value="3">
+                                    3 — Asymptomatic
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <small>
+                            Chest pain classification
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         MAXIMUM HEART RATE
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="thalach">
+                            Maximum Heart Rate
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon heart-icon">
+                                ♥
+                            </span>
+
+
+                            <input
+                                type="number"
+                                id="thalach"
+                                name="thalach"
+                                placeholder="e.g. 169"
+                                min="50"
+                                max="250"
+                                step="1"
+                                required>
+
+                        </div>
+
+
+                        <small>
+                            Maximum heart rate achieved
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         ST DEPRESSION
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="oldpeak">
+                            ST Depression (Oldpeak)
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◆
+                            </span>
+
+
+                            <input
+                                type="number"
+                                id="oldpeak"
+                                name="oldpeak"
+                                placeholder="e.g. 0.7"
+                                min="0"
+                                max="10"
+                                step="0.1"
+                                required>
+
+                        </div>
+
+
+                        <small>
+                            ST depression induced by exercise
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         SLOPE
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="slope">
+                            Slope
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◆
+                            </span>
+
+
+                            <select
+                                id="slope"
+                                name="slope"
+                                required>
+
+                                <option value=""
+                                        disabled
+                                        selected>
+                                    Select slope
+                                </option>
+
+                                <option value="0">
+                                    0 — Downsloping
+                                </option>
+
+                                <option value="1">
+                                    1 — Flat
+                                </option>
+
+                                <option value="2">
+                                    2 — Upsloping
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <small>
+                            Slope of the peak exercise ST segment
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         THALASSEMIA
+                    ====================================== -->
+
+                    <div class="form-group">
+
+                        <label for="thal">
+                            Thalassemia (Thal)
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◆
+                            </span>
+
+
+                            <select
+                                id="thal"
+                                name="thal"
+                                required>
+
+                                <option value=""
+                                        disabled
+                                        selected>
+                                    Select thalassemia type
+                                </option>
+
+                                <option value="0">
+                                    0 — Normal
+                                </option>
+
+                                <option value="1">
+                                    1 — Fixed Defect
+                                </option>
+
+                                <option value="2">
+                                    2 — Reversible Defect
+                                </option>
+
+                                <option value="3">
+                                    3 — Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <small>
+                            Thalassemia classification
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     SUBMIT
+                ========================================== -->
+
+                <div class="form-footer">
+
+
+                    <button
+                        type="submit"
+                        class="predict-button">
+
+                        <span class="button-heart">
+                            ♥
+                        </span>
+
+                        Predict Heart Disease
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <p class="privacy-note">
+
+                        🔒 Your information is processed by
+                        the machine learning application.
+
+                    </p>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+
+    {% if prediction is defined %}
+
+    <section class="result-section">
+
+
+        <div class="result-card
+            {% if prediction == 1 %}
+                danger
+            {% else %}
+                safe
+            {% endif %}">
+
+
+            <div class="result-icon">
+
+                {% if prediction == 1 %}
+                    !
+                {% else %}
+                    ✓
+                {% endif %}
+
+            </div>
+
+
+            <div class="result-content">
+
+
+                <span class="result-label">
+                    PREDICTION RESULT
+                </span>
+
+
+                {% if prediction == 1 %}
+
+                    <h2>
+                        Heart Disease Detected
+                    </h2>
+
+                    <p>
+                        The machine learning model predicts
+                        the presence of heart disease based
+                        on the supplied patient information.
+                    </p>
+
+                {% else %}
+
+                    <h2>
+                        No Heart Disease Detected
+                    </h2>
+
+                    <p>
+                        The machine learning model predicts
+                        that heart disease was not detected
+                        based on the supplied patient information.
+                    </p>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+
+        <p class="disclaimer">
+
+            ⚠ This application is intended for educational
+            purposes only and should not be considered
+            a medical diagnosis.
+
+        </p>
+
+
+    </section>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         ABOUT / PIPELINE
+    ====================================================== -->
+
+    <section class="about-section"
+             id="about">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-label">
+                ABOUT THE PROJECT
+            </div>
+
+
+            <h2>
+                Machine Learning Pipeline
+            </h2>
+
+
+            <p>
+                The prediction system follows a structured
+                machine learning workflow.
+            </p>
+
+
+        </div>
+
+
+
+        <div class="pipeline">
+
+
+            <!-- Step 1 -->
+
+            <div class="pipeline-item">
+
+                <div class="pipeline-number">
+                    01
+                </div>
+
+                <h3>
+                    Preprocessing
+                </h3>
+
+                <p>
+                    Data transformation and preparation
+                </p>
+
+            </div>
+
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+
+            <!-- Step 2 -->
+
+            <div class="pipeline-item">
+
+                <div class="pipeline-number">
+                    02
+                </div>
+
+                <h3>
+                    Feature Selection
+                </h3>
+
+                <p>
+                    Selection of relevant input features
+                </p>
+
+            </div>
+
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+
+            <!-- Step 3 -->
+
+            <div class="pipeline-item">
+
+                <div class="pipeline-number">
+                    03
+                </div>
+
+                <h3>
+                    SMOTE
+                </h3>
+
+                <p>
+                    Balancing the training dataset
+                </p>
+
+            </div>
+
+
+            <div class="pipeline-arrow">
+                →
+            </div>
+
+
+            <!-- Step 4 -->
+
+            <div class="pipeline-item">
+
+                <div class="pipeline-number">
+                    04
+                </div>
+
+                <h3>
+                    Prediction
+                </h3>
+
+                <p>
+                    Machine learning classification
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            ❤️ CardioPredict
+        </div>
+
+        <p>
+            Heart Disease Prediction using Machine Learning
+        </p>
+
+        <span>
+            Built with Python • Flask • Scikit-learn
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

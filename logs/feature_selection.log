@@ -1,0 +1,2 @@
+2026-09-29 02:42:04,116 - INFO - after doing constant feature selection : Index(['fbs_yeo_trim'], dtype='str')
+2026-09-29 02:42:04,118 - INFO - after doing quesi constant feature selection : Index(['trestbps_yeo_trim', 'chol_yeo_trim', 'exang_yeo_trim', 'ca_yeo_trim'], dtype='str')
